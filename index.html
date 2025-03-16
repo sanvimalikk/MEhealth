@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Prediction</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9966, #ff5e62);
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .btn-custom {
+            background: #ff5e62;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn-custom:hover {
+            background: #ff9966;
+        }
+        .loader {
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h4 class="center-align">Mental Health Prediction</h4>
+        <p class="center-align">Predict whether a person requires mental health treatment.</p>
+        <form action="/predict" method="post" id="prediction-form">
+            <div class="input-field">
+                <input type="number" id="age" name="Age" min="10" max="100" required>
+                <label for="age">Age</label>
+            </div>
+            <div class="input-field">
+                <select name="Gender" required>
+                    <option value="" disabled selected>Choose Gender</option>
+                    <option value="0">Male</option>
+                    <option value="1">Female</option>
+                    <option value="2">Transgender</option>
+                </select>
+                <label>Gender</label>
+            </div>
+            <div class="input-field">
+                <select name="Family_history" required>
+                    <option value="" disabled selected>Family History of Mental Health Issues?</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+                <label>Family History</label>
+            </div>
+            <button type="submit" class="btn btn-custom">Predict Probability</button>
+            <div class="loader">
+                <br>
+                <div class="preloader-wrapper active">
+                    <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <h5 class="center-align" id="prediction-result">{{pred}}</h5>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            M.AutoInit();
+            document.getElementById('prediction-form').onsubmit = function() {
+                document.querySelector('.loader').style.display = 'block';
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+body {
+  background: linear-gradient(135deg, olive 40%, beige 60%);
+  animation: liveBackground 10s infinite alternate;
+}
+
+@keyframes liveBackground {
+  0% { background: linear-gradient(135deg, olive 40%, beige 60%); }
+  50% { background: linear-gradient(135deg, darkolivegreen 40%, lightgoldenrodyellow 60%); }
+  100% { background: linear-gradient(135deg, olive 40%, beige 60%); }
+}
